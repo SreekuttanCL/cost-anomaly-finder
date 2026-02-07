@@ -1,0 +1,18 @@
+cat <<EOF > .gitignore
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+*.log
+
+# OS
+.DS_Store
+EOF
+
