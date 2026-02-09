@@ -1,8 +1,15 @@
 import os
 
-AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
-MODE = os.getenv("MODE", "test")  # test | prod
+MODE = os.getenv("MODE", "test")
+DAYS_BACK = int(os.getenv("DAYS_BACK", "7"))
+DYNAMODB_TABLE = os.getenv("DYNAMODB_TABLE")
 
-DYNAMODB_TABLE = os.getenv("DYNAMODB_TABLE", "cost-anomaly-finder-cost-history")
+# Anomaly detection config
+ANOMALY_MULTIPLIER = float(os.getenv("ANOMALY_MULTIPLIER", "1.5"))
+BASELINE_DAYS = int(os.getenv("BASELINE_DAYS", "7"))
 
-DAYS_BACK = int(os.getenv("DAYS_BACK", "14"))
+AI_ENABLED = os.getenv("AI_ENABLED", "false").lower() == "true"
+AI_PROVIDER = os.getenv("AI_PROVIDER", "mock")
+
+TEST_SPIKE_MULTIPLIER = float(os.getenv("TEST_SPIKE_MULTIPLIER", "2"))
+

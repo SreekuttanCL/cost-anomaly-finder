@@ -9,10 +9,12 @@ resource "aws_lambda_function" "cost_analyzer" {
 
   environment {
     variables = {
-      ENVIRONMENT    = var.environment
-      MODE           = "test"
-      DYNAMODB_TABLE = "${var.project_name}-cost-history"
-      DAYS_BACK      = "14"
+      ENVIRONMENT        = var.environment
+      MODE               = "test"
+      DYNAMODB_TABLE     = "${var.project_name}-cost-history"
+      DAYS_BACK          = "14"
+      AI_ENABLED         = "false"
+      ANOMALY_MULTIPLIER = "1.5"
     }
   }
 }

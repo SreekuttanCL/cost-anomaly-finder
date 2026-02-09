@@ -17,3 +17,18 @@ def store_daily_cost(table_name: str, date: str, total_cost: float, breakdown: d
             "created_at": datetime.utcnow().isoformat()
         }
     )
+
+def get_recent_costs(table_name: str, days: int) -> list[float]:
+    table = dynamodb.Table(table_name)
+
+    response = table.scan()
+    items = response.get("Items", [])
+
+    # Sort by date descending
+    items.sort(key=lambda x: x["date"], reverse=True)
+
+    recent_costs = []
+    for item in items[:days]:
+        recent_costs.append(float(item["total_cost"]))
+
+    return recent_costs
